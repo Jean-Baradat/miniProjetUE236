@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">Mini-Projet-UE236</string>
-    <string name="letext">Test</string>
+    <string name="button_next">Suivant</string>
 </resources>
