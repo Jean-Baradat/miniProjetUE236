@@ -16,49 +16,53 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ListView list = (ListView) findViewById(R.id.listContacts);
-        ArrayAdapter<String> tab =
-                new ArrayAdapter<String>(this, R.layout.checkbox);
-        tab.add("jeanne  06 00 00 00 00");
-        tab.add("oskour  06 00 00 00 00");
-        tab.add("goulag  06 00 00 00 00");
-        tab.add("Hortense  06 00 00 00 00");
-        tab.add("tubercule  06 00 00 00 00");
-        tab.add("jeanluc  06 00 00 00 00");
-        tab.add("Philippe  06 00 00 00 00");
-        tab.add("Poutou  06 00 00 00 00");
-        tab.add("eric  06 00 00 00 00");
-        tab.add("antoine  06 00 00 00 00");
-        tab.add("franssoua  06 00 00 00 00");
-        tab.add("hollande  06 00 00 00 00");
-        tab.add("Jean  06 00 00 00 00");
-        tab.add("Marie  06 00 00 00 00");
-        tab.add("Le Pen  06 00 00 00 00");
-        tab.add("Joseph  06 00 00 00 00");
-        tab.add("Staline  06 00 00 00 00");
-        tab.add("jeanne  06 00 00 00 00");
-        tab.add("oskour  06 00 00 00 00");
-        tab.add("goulag  06 00 00 00 00");
-        tab.add("Hortense  06 00 00 00 00");
-        tab.add("tubercule  06 00 00 00 00");
-        tab.add("jeanluc  06 00 00 00 00");
-        tab.add("Philippe  06 00 00 00 00");
-        tab.add("Poutou  06 00 00 00 00");
-        tab.add("eric  06 00 00 00 00");
-        tab.add("antoine  06 00 00 00 00");
-        tab.add("franssoua  06 00 00 00 00");
-        tab.add("hollande  06 00 00 00 00");
-        tab.add("Jean  06 00 00 00 00");
-        tab.add("Marie  06 00 00 00 00");
-        tab.add("Le Pen  06 00 00 00 00");
-        tab.add("Joseph  06 00 00 00 00");
-        tab.add("Staline  06 00 00 00 00");
 
+        class Contact {
+
+            // variables d'instance
+            private String nom;
+            private String prenom;
+            private String numero;
+
+            // constructeur avec nom, prenom, numero
+            public Contact(String newNom, String newPrenom, String newNumero) {
+                this.nom = newNom;
+                this.prenom = newPrenom;
+                this.numero = newNumero;
+            }
+
+        }
+
+        ArrayAdapter<Contact> tab = new ArrayAdapter<Contact>(this, R.layout.checkbox);
+
+        tab.add(new Contact("Dumas", "Lucie", "+33601020304"));
+        tab.add(new Contact("Machon", "Adélaïde", "+33602040608"));
+        tab.add(new Contact("Baradat", "Jean", "+33601030507"));
+        tab.add(new Contact("Cliquennois", "Salomé", "+33605060708"));
+        tab.add(new Contact("Menvussa", "Gérard", "+33611223344"));
+        tab.add(new Contact("L'ourson", "Winnie", "+33655667788"));
+        tab.add(new Contact("Zidane", "Zinedine", "+33611335577"));
+        tab.add(new Contact("Deschamps", "Didier", "+33622446688"));
+        tab.add(new Contact("Amazon", "Alexa", "+33698765432"));
+        tab.add(new Contact("Contact", "Jean-Jacques", "+33697531864"));
+        tab.add(new Contact("Dumas", "Lucie", "+33601020304"));
+        tab.add(new Contact("Machon", "Adélaïde", "+33602040608"));
+        tab.add(new Contact("Baradat", "Jean", "+33601030507"));
+        tab.add(new Contact("Cliquennois", "Salomé", "+33605060708"));
+        tab.add(new Contact("Menvussa", "Gérard", "+33611223344"));
+        tab.add(new Contact("L'ourson", "Winnie", "+33655667788"));
+        tab.add(new Contact("Zidane", "Zinedine", "+33611335577"));
+        tab.add(new Contact("Deschamps", "Didier", "+33622446688"));
+        tab.add(new Contact("Amazon", "Alexa", "+33698765432"));
+        tab.add(new Contact("Contact", "Jean-Jacques", "+33697531864"));
 
         list.setAdapter(tab);
+
     }
 
-    public void boutonNextActiviteContactSelectionne(View v){
+    public void boutonNextActiviteContactSelectionne(View v) {
         Intent intent = new Intent(this, ContactSelectionne.class);
         startActivity(intent);
     }
+
 }

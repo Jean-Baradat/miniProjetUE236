@@ -3,12 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/UE236 appli groupe A/app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="..\:/UE236 appli groupe A/app/src/main/res/layout/checkbox.xml" value="0.21875" />
-        <entry key="..\:/UE236 appli groupe A/app/src/main/res/layout/contact.xml" value="0.21875" />
-        <entry key="..\:/UE236 appli groupe A/app/src/main/res/layout/contact_selectionne.xml" value="0.21875" />
-        <entry key="..\:/UE236 appli groupe A/app/src/main/res/layout/test.xml" value="0.21875" />
         <entry key="..\:/Users/dovak/AndroidStudioProjects/MiniProjetUE236/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/miniProjetUE236/app/src/main/res/layout/activity_main.xml" value="0.4" />
+        <entry key="..\:/miniProjetUE236/app/src/main/res/layout/checkbox.xml" value="0.12708333333333333" />
       </map>
     </option>
   </component>
