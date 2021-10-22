@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Mini-Projet-UE236</string>
+    <string name="bouton_annuler">Annuler</string>
+    <string name="bouton_valider">Valider</string>
 </resources>
