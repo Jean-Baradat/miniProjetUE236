@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import java.util.*;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -12,9 +12,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getListeContacts();
     }
 
     public ArrayList<Contact> listeContacts = new ArrayList<Contact>();
+
+    public ArrayList<Contact> getListeContacts() {
+        return listeContacts;
+    }
 
     Contact contact1 = new Contact("Dumas", "Lucie", "+33601020304");
     Contact contact2 = new Contact("Machon", "Adélaïde", "+33602040608");
