@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
         ListView list = (ListView) findViewById(R.id.listContacts);
         ArrayAdapter<String> tab =
-                new ArrayAdapter<String>(this, R.layout.contact);
+                new ArrayAdapter<String>(this, R.layout.checkbox);
         tab.add("Jean  06 00 00 00 00");
         tab.add("pierre  06 00 00 00 00");
         tab.add("thomas  06 00 00 00 00");
