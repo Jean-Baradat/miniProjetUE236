@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import java.util.*;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -11,6 +13,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
+
+    public ArrayList<Contact> listeContacts = new ArrayList<Contact>();
+
+    Contact contact1 = new Contact("Dumas", "Lucie", 0601020304);
+    Contact contact2 = new Contact("Machon", "Adélaïde", 0602040608);
+    Contact contact3 = new Contact("Baradat", "Jean", 0601030507);
+    Contact contact4 = new Contact("Cliquennois", "Salomé", 0605060708);
+    Contact contact5 = new Contact("Menvussa", "Gérard", 0611223344);
+    Contact contact6 = new Contact("L'ourson", "Winnie", 0655667788);
+    Contact contact7 = new Contact("Zidane", "Zinedine", 0611335577);
+    Contact contact8 = new Contact("Deschamps", "Didier", 0622446688);
+    Contact contact9 = new Contact("Amazon", "Alexa", 0698765432);
+    Contact contact10 = new Contact("Menvussa", "Gérard", 0697531864);
 
     public class Contact {
 
@@ -24,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
             this.nom = "";
             this.prenom = "";
             this.numero = 0000000000;
+            listeContacts.add(this);
         }
 
         // constructeur avec nom, prenom, numero
@@ -31,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
             this.nom = newNom;
             this.prenom = newPrenom;
             this.numero = newNumero;
+            listeContacts.add(this);
         }
 
         // setters
