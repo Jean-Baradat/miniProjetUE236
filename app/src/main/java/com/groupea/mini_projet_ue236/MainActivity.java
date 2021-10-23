@@ -12,7 +12,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+{
 
     public static final String TAG = "ListViewExample";
 
@@ -20,24 +21,21 @@ public class MainActivity extends AppCompatActivity {
     private Button button;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         this.listView = (ListView)findViewById(R.id.listView);
         this.button = (Button)findViewById(R.id.button);
 
-        // CHOICE_MODE_NONE: (Default)
-        // (listView.setItemChecked(..) doest not work with CHOICE_MODE_NONE).
-        // CHOICE_MODE_SINGLE:
-        // CHOICE_MODE_MULTIPLE:
-        // CHOICE_MODE_MULTIPLE_MODAL:
         this.listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
-        this.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
+        this.listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+            {
                 Log.i(TAG, "onItemClick: " +position);
                 CheckedTextView v = (CheckedTextView) view;
                 boolean currentCheck = v.isChecked();
@@ -45,9 +43,9 @@ public class MainActivity extends AppCompatActivity {
                 contact.setActive(!currentCheck);
             }
         });
-        //
 
-        this.button.setOnClickListener(new View.OnClickListener() {
+        this.button.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View v) {
                 printSelectedItems();
@@ -57,7 +55,8 @@ public class MainActivity extends AppCompatActivity {
         this.initListViewData();
     }
 
-    private void initListViewData()  {
+    private void initListViewData()
+    {
         Contact Jean = new Contact("Jean", "+330601020304", false);
         Contact Lucie = new Contact ("Lucie", "+330601020304", false);
         Contact Salome = new Contact ("Salomé", "+330601020304", false);
@@ -81,58 +80,55 @@ public class MainActivity extends AppCompatActivity {
         Contact Melodie = new Contact ("Mélodie", "+330601020304", false);
 
         Contact[] contacts = new Contact[]
-                {Jean,
-                        Lucie,
-                        Salome,
-                        Henri,
-                        Valentine,
-                        Adelaide,
-                        Mathilde,
-                        Emma,
-                        Dave,
-                        Lou,
-                        Yannis,
-                        Achille,
-                        Gregory,
-                        Anthony,
-                        Océane,
-                        Jean_Marie,
-                        Alexandre,
-                        Germaine,
-                        Titouan,
-                        Lucas,
-                        Melodie};
+        {
+            Jean,
+            Lucie,
+            Salome,
+            Henri,
+            Valentine,
+            Adelaide,
+            Mathilde,
+            Emma,
+            Dave,
+            Lou,
+            Yannis,
+            Achille,
+            Gregory,
+            Anthony,
+            Océane,
+            Jean_Marie,
+            Alexandre,
+            Germaine,
+            Titouan,
+            Lucas,
+            Melodie
+        };
 
-        // android.R.layout.simple_list_item_checked:
-        // ListItem is very simple (Only one CheckedTextView).
-        ArrayAdapter<Contact> arrayAdapter
-                = new ArrayAdapter<Contact>(this, android.R.layout.simple_list_item_multiple_choice , contacts);
+        ArrayAdapter<Contact> arrayAdapter = new ArrayAdapter<Contact>(this, android.R.layout.simple_list_item_multiple_choice , contacts);
 
         this.listView.setAdapter(arrayAdapter);
 
-        for(int i=0;i< contacts.length; i++ )  {
+        for(int i = 0 ; i < contacts.length ; i++ )
+        {
             this.listView.setItemChecked(i,contacts[i].isActive());
         }
     }
 
-    // When user click "Print Selected Items".
-    public void printSelectedItems()  {
-
+    public void printSelectedItems()
+    {
         SparseBooleanArray sp = listView.getCheckedItemPositions();
 
         StringBuilder sb= new StringBuilder();
 
-        for(int i=0;i<sp.size();i++){
-            if(sp.valueAt(i)==true){
+        for(int i = 0 ; i < sp.size() ; i++)
+        {
+            if(sp.valueAt(i)==true)
+            {
                 Contact contact= (Contact) listView.getItemAtPosition(i);
-                // Or:
-                // String s = ((CheckedTextView) listView.getChildAt(i)).getText().toString();
-                //
                 String s= contact.getContactName();
                 sb = sb.append(" "+s);
             }
         }
         Toast.makeText(this, "Selected items are: "+sb.toString(), Toast.LENGTH_LONG).show();
     }
-
 }
