@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity
         Contact Achille = new Contact ("Achille", "+330601020304", false);
         Contact Gregory = new Contact ("Grégory", "+330601020304", false);
         Contact Anthony = new Contact ("Anthony", "+330601020304", false);
-        Contact Océane = new Contact ("Océane", "+330601020304", false);
+        Contact Oceane = new Contact ("Océane", "+330601020304", false);
         Contact Jean_Marie = new Contact ("Jean-Marie", "+330601020304", false);
         Contact Alexandre = new Contact ("Alexandre", "+330601020304", false);
         Contact Germaine = new Contact ("Germaine", "+330601020304", false);
@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity
             Achille,
             Gregory,
             Anthony,
-            Océane,
+            Oceane,
             Jean_Marie,
             Alexandre,
             Germaine,
