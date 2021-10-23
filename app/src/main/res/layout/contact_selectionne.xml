@@ -7,7 +7,7 @@
     tools:context=".ContactSelectionne">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="275dp"
@@ -25,7 +25,7 @@
         android:layout_marginBottom="100dp"
         android:onClick="boutonValider"
         android:text="@string/bouton_valider"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/button1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="UsingOnClickInXml" />
