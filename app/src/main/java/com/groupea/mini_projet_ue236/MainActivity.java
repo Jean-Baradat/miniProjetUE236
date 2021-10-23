@@ -35,8 +35,7 @@ public class MainActivity extends AppCompatActivity
             {
                 Log.i(TAG, "onItemClick" + position);
                 CheckedTextView v = (CheckedTextView) view;
-                //boolean currentCheck = v.isChecked;
-                boolean currentCheck = CheckedTextView.isChecked();
+                //boolean currentCheck = v.isChecked();
                 Contacts contact = (Contacts) listView.getItemAtPosition(position);
                 contact.setActive(!currentCheck);
             }
