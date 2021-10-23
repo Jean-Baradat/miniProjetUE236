@@ -1,5 +1,6 @@
 package com.groupea.mini_projet_ue236;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.SparseBooleanArray;
@@ -9,10 +10,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckedTextView;
 import android.widget.ListView;
+import java.io.Serializable;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends AppCompatActivity implements Serializable
 {
 
     public static final String TAG = "ListViewExample";
@@ -130,6 +132,12 @@ public class MainActivity extends AppCompatActivity
                 sb = sb.append(" "+s);
             }
         }
-        Toast.makeText(this, "Selected items are: "+sb.toString(), Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, "Selected items are: "+sb.toString(), Toast.LENGTH_LONG).show();
+    }
+    public void boutonNextActiviteMainActivity(View view)
+    {
+        Intent intent = new Intent(this, ContactSelectionne.class);
+        //intent.putExtra("CONTACT_NAMES", new String[] {contactName, phoneContact});
+        startActivity(intent);
     }
 }

@@ -15,6 +15,7 @@ public class ContactSelectionne extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.contact_selectionne);
     }
+
     public void boutonNextActiviteMainActivity(View v)
     {
         Intent intent = new Intent(this, MainActivity.class);
