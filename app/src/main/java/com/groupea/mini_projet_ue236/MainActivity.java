@@ -16,8 +16,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ListView list = (ListView) findViewById(R.id.listContacts);
-        ArrayAdapter<String> tab =
-                new ArrayAdapter<String>(this, R.layout.checkbox);
+        ArrayAdapter<String> tab = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice);
         tab.add("jeanne  06 00 00 00 00");
         tab.add("oskour  06 00 00 00 00");
         tab.add("goulag  06 00 00 00 00");
