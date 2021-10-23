@@ -9,7 +9,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckedTextView;
 import android.widget.ListView;
-import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity
@@ -37,8 +36,8 @@ public class MainActivity extends AppCompatActivity
                 Log.i(TAG, "onItemClick" + position);
                 CheckedTextView v = (CheckTextView) view;
                 boolean currentCheck = v.isChecked;
-                Contacts user = (Contacts) listView.getItemAtPosition(position);
-                user.setActive(!currentCheck);
+                Contacts contact = (Contacts) listView.getItemAtPosition(position);
+                contact.setActive(!currentCheck);
             }
         });
 
@@ -47,7 +46,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                printSelectedItems();
+                validate_Next();
             }
         });
 
@@ -78,5 +77,56 @@ public class MainActivity extends AppCompatActivity
         Contacts Titouan = new Contacts ("Titouan");
         Contacts Lucas = new Contacts ("Lucas");
         Contacts Mélodie = new Contacts ("Mélodie");
+
+        Contacts[] contacts = new Contacts[]
+        {
+            jean,
+            lucie,
+            salomé,
+            henri,
+            valentine,
+            adélaïde,
+            mathilde,
+            emma,
+            dave,
+            lou,
+            yannis,
+            achille,
+            grégory,
+            anthony,
+            océane,
+            jean-marie,
+            alexandre,
+            germaine,
+            titouan,
+            lucas,
+            mélodie
+        };
+
+        ArrayAdapter<Contacts> arrayAdapter = new ArrayAdapter<Contacts>(this, android.R.layout.simple_list_item_checked, contacts);
+
+        this.listView.setAdapter(arrayAdapter);
+
+        for (int i = 0 ; i < contacts.length ; i++)
+        {
+            this.listView.setItemChecked(i, contacts[i].isActive());
+        }
+    }
+
+    public void validateNext()
+    {
+        SparseBooleanArray sp = listView.getCheckedItemPositions();
+
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0 ; i < sp.size() ; i++)
+        {
+            if (sp.valueAt(i) == true)
+            {
+                Contacts contact = (Contacts) listView.getItemAtPosition(i);
+                String s = contact.getContactName();
+                sb = sb.append("" + s);
+            }
+        }
     }
 }
