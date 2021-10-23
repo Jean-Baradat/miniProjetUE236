@@ -1,8 +1,10 @@
 package com.groupea.mini_projet_ue236;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.io.Serializable;
 
-public class Contact implements Serializable
+public class Contact extends AppCompatActivity implements Serializable
 {
     private String contactName;
     private String phoneContact;
