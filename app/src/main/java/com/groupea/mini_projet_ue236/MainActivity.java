@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements Serializable
         }
         //Toast.makeText(this, "Selected items are: "+sb.toString(), Toast.LENGTH_LONG).show();
     }
-    public void boutonNextActiviteMainActivity(View view)
+    public void boutonNextActiviteContactSelectionne(View v)
     {
         Intent intent = new Intent(this, ContactSelectionne.class);
         //intent.putExtra("CONTACT_NAMES", new String[] {contactName, phoneContact});
