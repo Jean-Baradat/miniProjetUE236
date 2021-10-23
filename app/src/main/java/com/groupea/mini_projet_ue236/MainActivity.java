@@ -34,8 +34,9 @@ public class MainActivity extends AppCompatActivity
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
                 Log.i(TAG, "onItemClick" + position);
-                CheckedTextView v = (CheckTextView) view;
-                boolean currentCheck = v.isChecked;
+                CheckedTextView v = (CheckedTextView) view;
+                //boolean currentCheck = v.isChecked;
+                boolean currentCheck = CheckedTextView.isChecked();
                 Contacts contact = (Contacts) listView.getItemAtPosition(position);
                 contact.setActive(!currentCheck);
             }
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                validate_Next();
+                validateNext();
             }
         });
 
@@ -54,21 +55,21 @@ public class MainActivity extends AppCompatActivity
     }
 
     //Reprendre la liste de Salomé
-    private void initListViewData
+    private void initListViewData()
     {
         Contacts Jean = new Contacts("Jean");
         Contacts Lucie = new Contacts ("Lucie");
-        Contacts Salomé = new Contacts ("Salomé");
+        Contacts Salome = new Contacts ("Salomé");
         Contacts Henri = new Contacts ("Henri");
         Contacts Valentine = new Contacts ("Valentine");
-        Contacts Adélaïde = new Contacts ("Adélaïde");
+        Contacts Adelaide = new Contacts ("Adélaïde");
         Contacts Mathilde = new Contacts ("Mathilde");
         Contacts Emma = new Contacts ("Emma");
         Contacts Dave = new Contacts ("Dave");
         Contacts Lou = new Contacts ("Lou");
         Contacts Yannis = new Contacts ("Yannis");
         Contacts Achille = new Contacts ("Achille");
-        Contacts Grégory = new Contacts ("Grégory");
+        Contacts Gregory = new Contacts ("Grégory");
         Contacts Anthony = new Contacts ("Anthony");
         Contacts Océane = new Contacts ("Océane");
         Contacts Jean_Marie = new Contacts ("Jean-Marie");
@@ -76,34 +77,34 @@ public class MainActivity extends AppCompatActivity
         Contacts Germaine = new Contacts ("Germaine");
         Contacts Titouan = new Contacts ("Titouan");
         Contacts Lucas = new Contacts ("Lucas");
-        Contacts Mélodie = new Contacts ("Mélodie");
+        Contacts Melodie = new Contacts ("Mélodie");
 
         Contacts[] contacts = new Contacts[]
         {
-            jean,
-            lucie,
-            salomé,
-            henri,
-            valentine,
-            adélaïde,
-            mathilde,
-            emma,
-            dave,
-            lou,
-            yannis,
-            achille,
-            grégory,
-            anthony,
-            océane,
-            jean-marie,
-            alexandre,
-            germaine,
-            titouan,
-            lucas,
-            mélodie
+            Jean,
+            Lucie,
+            Salome,
+            Henri,
+            Valentine,
+            Adelaide,
+            Mathilde,
+            Emma,
+            Dave,
+            Lou,
+            Yannis,
+            Achille,
+            Gregory,
+            Anthony,
+            Océane,
+            Jean_Marie,
+            Alexandre,
+            Germaine,
+            Titouan,
+            Lucas,
+            Melodie
         };
 
-        ArrayAdapter<Contacts> arrayAdapter = new ArrayAdapter<Contacts>(this, android.R.layout.simple_list_item_checked, contacts);
+        ArrayAdapter<Contacts> arrayAdapter = new ArrayAdapter<Contacts>(this, android.R.layout.simple_list_item_multiple_choice, contacts);
 
         this.listView.setAdapter(arrayAdapter);
 
