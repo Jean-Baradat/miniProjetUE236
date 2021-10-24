@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.View;
-import android.widget.AdapterView;
+//import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckedTextView;
@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity implements Serializable
     public static final String TAG = "ListViewExample";
 
     private ListView listView;
-    private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -28,31 +27,21 @@ public class MainActivity extends AppCompatActivity implements Serializable
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        this.listView = (ListView)findViewById(R.id.listView);
-        this.button = (Button)findViewById(R.id.button);
+        this.listView = findViewById(R.id.listView);
+        Button button = findViewById(R.id.button);
 
         this.listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
-        this.listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        this.listView.setOnItemClickListener((parent, view, position, id) ->
         {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
-            {
-                Log.i(TAG, "onItemClick: " +position);
-                CheckedTextView v = (CheckedTextView) view;
-                boolean currentCheck = v.isChecked();
-                Contact contact = (Contact) listView.getItemAtPosition(position);
-                contact.setActive(!currentCheck);
-            }
+            Log.i(TAG, "onItemClick: " +position);
+            CheckedTextView v = (CheckedTextView) view;
+            boolean currentCheck = v.isChecked();
+            Contact contact = (Contact) listView.getItemAtPosition(position);
+            contact.setActive(!currentCheck);
         });
 
-        this.button.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v) {
-                printSelectedItems();
-            }
-        });
+        button.setOnClickListener(v -> printSelectedItems());
 
         this.initListViewData();
     }
@@ -107,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements Serializable
             Didier
         };
 
-        ArrayAdapter<Contact> arrayAdapter = new ArrayAdapter<Contact>(this, android.R.layout.simple_list_item_multiple_choice , contacts);
+        ArrayAdapter<Contact> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_multiple_choice, contacts);
 
         this.listView.setAdapter(arrayAdapter);
 
@@ -125,16 +114,16 @@ public class MainActivity extends AppCompatActivity implements Serializable
 
         for(int i = 0 ; i < sp.size() ; i++)
         {
-            if(sp.valueAt(i)==true)
+            if(sp.valueAt(i))
             {
                 Contact contact= (Contact) listView.getItemAtPosition(i);
                 String s= contact.getContactName();
-                sb = sb.append(" "+s);
+                sb = sb.append(" ").append(s);
             }
         }
-        //Toast.makeText(this, "Selected items are: "+sb.toString(), Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Selected items are: "+sb.toString(), Toast.LENGTH_LONG).show();
     }
-    public void boutonNextActiviteContactSelectionne(View v)
+    public void boutonNextActiviteContactSelectionne(View view)
     {
         Intent intent = new Intent(this, ContactSelectionne.class);
         //intent.putExtra("CONTACT_NAMES", new String[] {contactName, phoneContact});
