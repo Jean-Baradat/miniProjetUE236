@@ -25,5 +25,7 @@ public class ContactSelectionne extends AppCompatActivity
     public void boutonValider(View view)
     {
         Toast.makeText(this, "Vous avez validé, merci !", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }
