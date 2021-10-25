@@ -18,7 +18,7 @@ public class ContactSelectionne extends AppCompatActivity
         Bundle infos = getIntent().getExtras();
         final String selectedContacts = (String) infos.getSerializable("listSelectedContacts");
         TextView textView = findViewById(R.id.textview1);
-        textView.setText(selectedContacts);
+        textView.setText("Voulez-vous envoyer un message à" + selectedContacts + " ?");
     }
 
     public void boutonNextActiviteMainActivity(View v)
@@ -29,7 +29,7 @@ public class ContactSelectionne extends AppCompatActivity
 
     public void boutonValider(View view)
     {
-        Toast.makeText(this, "Vous avez validé, merci !", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Le message a été envoyé !", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
