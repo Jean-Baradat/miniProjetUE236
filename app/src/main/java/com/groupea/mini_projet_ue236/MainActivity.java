@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements Serializable
             {
                 Contact contact= (Contact) listView.getItemAtPosition(i);
                 String s= contact.getContactName();
-                sb = sb.append(" ").append(s);
+                sb = sb.append(" ").append(s + ", ");
             }
         }
         Intent intent = new Intent(this, ContactSelectionne.class);
