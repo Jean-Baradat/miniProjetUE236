@@ -45,27 +45,27 @@ public class MainActivity extends AppCompatActivity implements Serializable
 
     private void initListViewData()
     {
-        Contact Jean = new Contact("Jean Baradat", "+33601030507", false);
-        Contact Lucie = new Contact ("Lucie Dumas", "+33602040608", false);
-        Contact Salome = new Contact ("Salomé Cliquennois", "+33601030507", false);
-        Contact Henri = new Contact ("Henri Michaud", "+330601020304", false);
-        Contact Valentine = new Contact ("Valentine Maillard", "+330601020304", false);
-        Contact Adelaide = new Contact ("Adélaïde Machon", "+330601020304", false);
-        Contact Mathilde = new Contact ("Mathilde Titi", "+330601020304", false);
-        Contact Emma = new Contact ("Emma Amore", "+330601020304", false);
-        Contact Dave = new Contact ("Dave Strider", "+330601020304", false);
-        Contact Lou = new Contact ("Lou Pépèle", "+330601020304", false);
-        Contact Yannis = new Contact ("Yannis Kuro", "+330601020304", false);
-        Contact Achille = new Contact ("Achille Talon", "+330601020304", false);
-        Contact Gregory = new Contact ("Grégory Flotti", "+330601020304", false);
-        Contact Winnie = new Contact ("Winnie L'Ourson", "+33611223344", false);
-        Contact Gerard = new Contact ("Gérard Menvussa", "+33611223344", false);
-        Contact Jean_Marie = new Contact ("Jean-Marie Saint-Joseph", "+330601020304", false);
-        Contact Zinedine = new Contact ("Zinedine Zidane", "+33611335577", false);
-        Contact Germaine = new Contact ("Germaine Langlisse", "+330601020304", false);
-        Contact Titouan = new Contact ("Titouan Gaming", "+330601020304", false);
-        Contact Alexa = new Contact ("Alexa Amazon", "+33698765432", false);
-        Contact Didier = new Contact ("Didier Deschamps", "+33622446688", false);
+        Contact Jean = new Contact("Jean Baradat", 0033601030507, false);
+        Contact Lucie = new Contact ("Lucie Dumas", 0033600000000, false);
+        Contact Salome = new Contact ("Salomé Cliquennois", 0033601030507, false);
+        Contact Henri = new Contact ("Henri Michaud", 0033601020304, false);
+        Contact Valentine = new Contact ("Valentine Maillard", 0033601020304, false);
+        Contact Adelaide = new Contact ("Adélaïde Machon", 0033601020304, false);
+        Contact Mathilde = new Contact ("Mathilde Titi", 0033601020304, false);
+        Contact Emma = new Contact ("Emma Amore", 0033601020304, false);
+        Contact Dave = new Contact ("Dave Strider", 0033601020304, false);
+        Contact Lou = new Contact ("Lou Pépèle", 0033601020304, false);
+        Contact Yannis = new Contact ("Yannis Kuro", 0033601020304, false);
+        Contact Achille = new Contact ("Achille Talon", 0033601020304, false);
+        Contact Gregory = new Contact ("Grégory Flotti", 0033601020304, false);
+        Contact Winnie = new Contact ("Winnie L'Ourson", 0033611223344, false);
+        Contact Gerard = new Contact ("Gérard Menvussa", 0033611223344, false);
+        Contact Jean_Marie = new Contact ("Jean-Marie Saint-Joseph", 0033601020304, false);
+        Contact Zinedine = new Contact ("Zinedine Zidane", 003311335577, false);
+        Contact Germaine = new Contact ("Germaine Langlisse", 0033601020304, false);
+        Contact Titouan = new Contact ("Titouan Gaming", 0033601020304, false);
+        Contact Alexa = new Contact ("Alexa Amazon", 0033600000000, false);
+        Contact Didier = new Contact ("Didier Deschamps", 0033600000001, false);
 
 
         Contact[] contacts = new Contact[]
@@ -115,7 +115,8 @@ public class MainActivity extends AppCompatActivity implements Serializable
             {
                 Contact contact= (Contact) listView.getItemAtPosition(i);
                 String s= contact.getContactName();
-                sb = sb.append(" ").append(s + ", ");
+                double t= contact.getPhoneContact();
+                sb = sb.append(" ").append(s + " " + "(" + t + ")" + ", ");
             }
         }
         Intent intent = new Intent(this, ContactSelectionne.class);
