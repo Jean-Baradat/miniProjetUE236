@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.CheckedTextView;
 import android.widget.ListView;
 import java.io.Serializable;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity implements Serializable
@@ -119,6 +120,19 @@ public class MainActivity extends AppCompatActivity implements Serializable
                 sb = sb.append(" ").append(s + " " + "(" + t + ")" + ", ");
             }
         }
+
+        //En fait je sais pas quoi utiliser en condition ... y a des histoires de .isSelected des trucs comme ça mais bof
+        /*if()
+        {
+            Intent intent = new Intent(this, ContactSelectionne.class);
+            intent.putExtra("listSelectedContacts", sb.toString());
+            startActivity(intent);
+        }
+        else
+        {
+            Toast.makeText(this, "Aucun contact sélectionné", Toast.LENGTH_SHORT).show();
+        }*/
+
         Intent intent = new Intent(this, ContactSelectionne.class);
         intent.putExtra("listSelectedContacts", sb.toString());
         startActivity(intent);
