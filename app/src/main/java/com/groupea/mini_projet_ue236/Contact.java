@@ -7,30 +7,30 @@ import java.io.Serializable;
 public class Contact extends AppCompatActivity implements Serializable
 {
     private String contactName;
-    private double phoneContact;
+    private String phoneContact;
 
     private boolean active;
 
-    public Contact(String contactName, double phoneContact)
+    public Contact(String contactName, String phoneContact)
     {
         this.contactName = contactName;
         this.phoneContact = phoneContact;
         this.active= true;
     }
 
-    public Contact(String contactName, double phoneContact, boolean active)
+    public Contact(String contactName, String phoneContact, boolean active)
     {
         this.contactName= contactName;
         this.phoneContact = phoneContact;
         this.active= active;
     }
 
-    public double getPhoneContact()
+    public String getPhoneContact()
     {
         return phoneContact;
     }
 
-    public void setphoneContact(double phoneContact)
+    public void setphoneContact(String phoneContact)
     {
         this.phoneContact = phoneContact;
     }
