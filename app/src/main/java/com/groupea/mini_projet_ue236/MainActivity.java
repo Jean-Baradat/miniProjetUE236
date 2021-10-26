@@ -104,8 +104,10 @@ public class MainActivity extends AppCompatActivity implements Serializable
         }
     }
 
-    public void printSelectedItems()
-    {
+    public void printSelectedItems(){
+
+        String newLine = System.getProperty("line.separator");
+
         SparseBooleanArray sp = listView.getCheckedItemPositions();
 
         StringBuilder sb= new StringBuilder();
@@ -117,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements Serializable
                 Contact contact= (Contact) listView.getItemAtPosition(i);
                 String s= contact.getContactName();
                 String t= contact.getPhoneContact();
-                sb = sb.append(" ").append(s + " " + "(" + t + ")" + ", ");
+                sb = sb.append(newLine + "• " ).append(s + " " + "(" + t + ")");
             }
         }
 
