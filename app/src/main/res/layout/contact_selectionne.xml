@@ -6,46 +6,53 @@
     android:layout_height="match_parent"
     tools:context=".ContactSelectionne">
 
-    <TextView
-        android:id="@+id/textview1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="25dp"
-        android:paddingRight="25dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/button1"
+    <ScrollView
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
-
+        app:layout_constraintBottom_toTopOf="@id/button1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp">
+        <TextView
+            android:id="@+id/textview1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@id/button1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+    </ScrollView>
     <Button
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginBottom="30dp"
         android:onClick="boutonValider"
         android:text="@string/bouton_valider"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.4"
         tools:ignore="NotSibling,UsingOnClickInXml" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
         android:onClick="boutonNextActiviteMainActivity"
         android:text="@string/bouton_annuler"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button1"
-        app:layout_constraintVertical_bias="0.2"
         tools:ignore="NotSibling,UsingOnClickInXml" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
