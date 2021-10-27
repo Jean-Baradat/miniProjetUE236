@@ -17,9 +17,15 @@ public class ContactSelectionne extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.contact_selectionne);
         Bundle infos = getIntent().getExtras();
+
+        /*
         final String selectedContacts = (String) infos.getSerializable("listSelectedContacts");
         TextView textView = findViewById(R.id.textview1);
         textView.setText("Voulez-vous envoyer un message à :" + newLine + selectedContacts + " ?");
+         */
+
+
+
     }
 
     public void boutonNextActiviteMainActivity(View v)
