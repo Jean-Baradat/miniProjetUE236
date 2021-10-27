@@ -33,8 +33,7 @@ public class ContactSelectionne extends AppCompatActivity implements Serializabl
                 textView.append(infoTitre + newLine);
             }
             contactChosen = listSelectedContacts.get(i);
-            System.out.println(contactChosen);
-            textView.append(newLine + contactChosen);
+            textView.append(newLine + "• " + contactChosen);
         }
     }
 
