@@ -18,8 +18,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity implements Serializable {
 
-    //TODO à sup !
-    /*public static final String TAG = "ListViewExample";*/
 
     private ListView listView;
     private ArrayList<Contact> listeDesContacts;
@@ -32,23 +30,16 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         setContentView(R.layout.activity_main);
 
         this.listView = findViewById(R.id.listView);
-        //TODO à sup !
-        /*Button button = findViewById(R.id.button);*/
 
         this.listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
         this.listView.setOnItemClickListener((parent, view, position, id) -> {
 
-            //TODO à sup ?
-            /*Log.i(TAG, "onItemClick: " +position);*/
             CheckedTextView v = (CheckedTextView) view;
             boolean currentCheck = v.isChecked();
             Contact contact = (Contact) listView.getItemAtPosition(position);
             contact.setActive(!currentCheck);
         });
-
-        //TODO à sup !
-        /*button.setOnClickListener(v -> printSelectedItems());*/
 
         this.initListViewData();
     }
@@ -100,35 +91,6 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         listeDesContacts.add(Alexa);
         listeDesContacts.add(Didier);
 
-
-        //TODO à sup !
-        /*
-        Contact[] contacts = new Contact[]
-        {
-            Jean,
-            Lucie,
-            Salome,
-            Henri,
-            Valentine,
-            Adelaide,
-            Mathilde,
-            Emma,
-            Dave,
-            Lou,
-            Yannis,
-            Achille,
-            Gregory,
-            Winnie,
-            Gerard,
-            Jean_Marie,
-            Zinedine,
-            Germaine,
-            Titouan,
-            Alexa,
-            Didier
-        };
-         */
-
         ArrayAdapter<Contact> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_multiple_choice, getListeDesContacts());
         this.listView.setAdapter(arrayAdapter);
 
@@ -152,15 +114,17 @@ public class MainActivity extends AppCompatActivity implements Serializable {
     public void printSelectedItems(View v){
 
 
-        /*String newLine = System.getProperty("line.separator");*/
         this.listeDesContactsSelectionnes = new ArrayList<Contact>();
         System.out.println(getListeDesContacts());
         System.out.println(getListeDesContactsSelectionnes());
 
+        SparseBooleanArray sp = listView.getCheckedItemPositions();
+
         for(int i = 0 ; i < getListeDesContacts().size() ; i++) {
-            /*if (listeDesContacts.get(i) == )*/
-            this.listeDesContactsSelectionnes.add(listeDesContacts.get(i));
-            System.out.println("ICI" + getListeDesContactsSelectionnes());
+            if (sp.valueAt(i) == true) {
+                this.listeDesContactsSelectionnes.add(listeDesContacts.get(i));
+                System.out.println("ICI" + getListeDesContactsSelectionnes());
+            }
         }
 
 
