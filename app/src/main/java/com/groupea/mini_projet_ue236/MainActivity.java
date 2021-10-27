@@ -94,13 +94,11 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         ArrayAdapter<Contact> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_multiple_choice, getListeDesContacts());
         this.listView.setAdapter(arrayAdapter);
 
-        //TODO c'est pour quoi faire ?
-        for(int i = 0 ; i < listeDesContacts.size() ; i++ ){
+
+        for(int i = 0 ; i < listeDesContacts.size() ; i++ ) {
+
             this.listView.setItemChecked(i, listeDesContacts.get(i).isActive());
-
         }
-
-
     }
 
     public ArrayList<Contact> getListeDesContacts() {
@@ -115,41 +113,19 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
 
         this.listeDesContactsSelectionnes = new ArrayList<Contact>();
-        System.out.println(getListeDesContacts());
-        System.out.println(getListeDesContactsSelectionnes());
-
         SparseBooleanArray sp = listView.getCheckedItemPositions();
 
         for(int i = 0 ; i < getListeDesContacts().size() ; i++) {
+
             if (sp.valueAt(i) == true) {
+
                 this.listeDesContactsSelectionnes.add(listeDesContacts.get(i));
-                System.out.println("ICI" + getListeDesContactsSelectionnes());
             }
         }
-
-
-
-        /*
-        SparseBooleanArray sp = listView.getCheckedItemPositions();
-
-        StringBuilder sb = new StringBuilder();
-
-        for(int i = 0 ; i < sp.size() ; i++)
-        {
-            if(sp.valueAt(i))
-            {
-                Contact contact= (Contact) listView.getItemAtPosition(i);
-                String s = contact.getContactName();
-                String t = contact.getPhoneContact();
-                sb = sb.append(newLine + "• " ).append(s + " " + "(" + t + ")");
-            }
-        }
-        */
-
-
 
         Intent intent = new Intent(this, ContactSelectionne.class);
-        /*intent.putExtra("listSelectedContacts", sb.toString());*/
+        intent.putExtra("listSelectedContacts", listeDesContactsSelectionnes);
         startActivity(intent);
+
     }
 }

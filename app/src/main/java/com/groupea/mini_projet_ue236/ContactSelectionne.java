@@ -8,24 +8,34 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class ContactSelectionne extends AppCompatActivity
-{
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public class ContactSelectionne extends AppCompatActivity implements Serializable {
+
+    String newLine = System.getProperty("line.separator");
+    public Contact contactChosen;
+    final String infoTitre = "Voulez-vous envoyer un message à :";
+
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
-        String newLine = System.getProperty("line.separator");
+    protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.contact_selectionne);
+
         Bundle infos = getIntent().getExtras();
+        final ArrayList<Contact> listSelectedContacts = (ArrayList<Contact>) infos.getSerializable("listSelectedContacts");
 
-        /*
-        final String selectedContacts = (String) infos.getSerializable("listSelectedContacts");
         TextView textView = findViewById(R.id.textview1);
-        textView.setText("Voulez-vous envoyer un message à :" + newLine + selectedContacts + " ?");
-         */
 
-
-
+        for (int i = 0; i < listSelectedContacts.size() ; i++) {
+            if (i == 0){
+                textView.append(infoTitre + newLine);
+            }
+            contactChosen = listSelectedContacts.get(i);
+            System.out.println(contactChosen);
+            textView.append(newLine + contactChosen);
+        }
     }
 
     public void boutonNextActiviteMainActivity(View v)
