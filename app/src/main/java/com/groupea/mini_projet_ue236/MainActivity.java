@@ -1,8 +1,13 @@
 package com.groupea.mini_projet_ue236;
 
 // Import de diverses bibliothèques
+import android.annotation.SuppressLint;
+import android.content.ContentResolver;
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -111,9 +116,55 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         this.initListViewData();
     }
 
+    //Content Providers
+
+    public void readContacts() {
+        //On va chercher les contacts dans l'appli contact
+        ContentResolver cr = getContentResolver();
+        Uri uri = ContactsContract.Contacts.CONTENT_URI;
+        String[] projection = null;
+        String selection = null;
+        String[] selectionArgs = null;
+        String sortOrder = null;
+        Cursor cur = cr.query(uri, projection, selection, selectionArgs, sortOrder);
+
+        //On vérifie que l'app a bien récupéré au moins un contact
+        if (cur.getCount() > 0) {
+
+            //Passe à l'élément suivent
+            while (cur.moveToNext()){
+                //Pour avoir l'index de la colonne, on peut utiliser son nom et pour avoir ce dernier, on cherche son id dans l'app android
+                @SuppressLint("Range") String nom = cur.getString(cur.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+                @SuppressLint("Range") String id = cur.getString(cur.getColumnIndex(ContactsContract.Contacts._ID));
+
+                //Il n'existe pas de formule pour prendre le numéro de tel mais on peut contourner ça avec une formule
+                //qui va nous dire 1 si le contact a un tel et 0 si il n'en a pas
+
+                @SuppressLint("Range") int numero = cur.getInt(cur.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER));
+
+                //Condition : si le nombre retourné est 1 on va chercher dans un autre provider le numéro
+
+                if (numero==1){
+
+                    Uri uri2 = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
+                    String selection2 = ContactsContract.CommonDataKinds.Phone.CONTACT_ID + "= ?";
+                    String[] selectionArgs2 = new String[]{id};
+                    Cursor cur2 = cr.query(uri2, projection, selection2, selectionArgs2, sortOrder);
+
+                    //On applique une boucle while pour récupérer les numéros de téléphone
+
+                    while (cur2.moveToNext()){
+                        @SuppressLint("Range") String phone = cur2.getString(cur2.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                    }
+                }
+            }
+        }
+    }
+
     // Créé les objets contacts, ajoutes dans un arrayList, gestion du coche solo, creation de
     // l'adapter
     private void initListViewData() {
+
 
         // Création des objets Contact
         Contact Jean = new Contact(
