@@ -10,10 +10,12 @@ import android.widget.CheckBox;
 import android.widget.CheckedTextView;
 import android.widget.CompoundButton;
 import android.widget.ListView;
-import java.io.Serializable;
-import java.util.ArrayList;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.io.Serializable;
+import java.util.ArrayList;
 
 // AppCompatActivity : supporte les màj de librairies || Sérialization : les objets deviennent un
 // tableau d'octets
@@ -209,6 +211,8 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         return listeDesContactsSelectionnes;
     }
 
+
+
     // Créer une nouvelle arrayList contenant les contacts choisis précédemment (merci aux index)
     // afin de pouvoir les transporter plus facilement à la prochaine activité
     public void buttonNextActivityContactSelectionne(View v){
@@ -229,12 +233,19 @@ public class MainActivity extends AppCompatActivity implements Serializable {
             }
         }
 
-        // fait le lien entre cette activité et l'activité ContactSelectionne
-        Intent intent = new Intent(this, ContactSelectionne.class);
-        // récupère la liste des contacts sélectionnés, avec ce qui servira de clé sur l'autre
-        // activité : "listSelectedContacts"
-        intent.putExtra("listSelectedContacts", listeDesContactsSelectionnes);
-        // lance l'intent décrit
-        startActivity(intent);
+        if (listeDesContactsSelectionnes.size() == 0)
+        {
+            Toast.makeText(this, "Sélectionnez au moins un contact", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            // fait le lien entre cette activité et l'activité ContactSelectionne
+            Intent intent = new Intent(this, ContactSelectionne.class);
+            // récupère la liste des contacts sélectionnés, avec ce qui servira de clé sur l'autre
+            // activité : "listSelectedContacts"
+            intent.putExtra("listSelectedContacts", listeDesContactsSelectionnes);
+            // lance l'intent décrit
+            startActivity(intent);
+        }
     }
 }
