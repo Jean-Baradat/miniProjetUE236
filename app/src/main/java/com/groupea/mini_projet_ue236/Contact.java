@@ -65,9 +65,10 @@ public class Contact extends AppCompatActivity implements Serializable
     }
 
     // Méthode pour définir le parametre active avec un boolean (true/false)
-    public void setActive(boolean active)
+    public boolean setActive(boolean active)
     {
         this.active = active;
+        return active;
     }
 
     // donne la structure d'affichage de chaque objet contact.
