@@ -48,11 +48,11 @@ public class ContactSelectionne extends AppCompatActivity implements Serializabl
         // haut en bas)
         for (int i = 0; i < listSelectedContacts.size() ; i++) {
             if (i == 0){
-                // permet d'appeler la phrase d'intro lorsque l'index du nuveau tableau est à 0
+                // permet d'appeler la phrase d'intro lorsque l'index du nouveau tableau est à 0
                 // (=économise un textView) et rajoute un retour à la ligne
                 textView.append(infoTitre + newLine);
             }
-            // récupère l'index du contact et la palce dans contactChosen
+            // récupère l'index du contact et la place dans contactChosen
             contactChosen = listSelectedContacts.get(i);
             // saut de ligne + point de liste + nom du contact à l'index i (contactChosen)
             textView.append(newLine + "• " + contactChosen);

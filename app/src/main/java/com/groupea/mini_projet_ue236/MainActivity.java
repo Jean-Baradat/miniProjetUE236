@@ -61,6 +61,12 @@ public class MainActivity extends AppCompatActivity implements Serializable {
             // permet de changer l'état de la checkbox lorsque l'on clique dessus en tenant compte
             // de son état précédent (true devient false, false devient true)
             contact.setActive(!currentCheck);
+
+            //NE FONCTIONNE PAS : pour déselectionner la case checkbox all ; initialement testé avec
+            //isChecked, mais rien n'y fait, donc nique
+            /*if(contact.setActive(!currentCheck)){
+                checkBoxCheckAll.setSelected(false);
+            }*/
         });
 
 
