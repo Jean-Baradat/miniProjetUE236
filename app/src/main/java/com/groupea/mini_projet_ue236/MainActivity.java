@@ -1,8 +1,14 @@
 package com.groupea.mini_projet_ue236;
 
 // Import de diverses bibliothèques
+import android.Manifest;
+import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -12,7 +18,10 @@ import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -30,6 +39,10 @@ public class MainActivity extends AppCompatActivity implements Serializable {
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+
+        // demande à l'utilisateur l'accès en lecture aux contacts
+        requestPermissions(new String[]{Manifest.permission.READ_CONTACTS}, 2);
+
         // pour que notre code puisse être lu en addition du code existant déjà dans le onCreate()
         super.onCreate(savedInstanceState);
         // pose l'interface visuelle depuis les ressources (R) correspondant à activity_main.xml
@@ -111,79 +124,46 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         // Execution de la methode initListViewData : mise en place des elements de la liste
         // ListView
         this.initListViewData();
+
     }
 
-    // Créé les objets contacts, ajoutes dans un arrayList, gestion du coche solo, creation de
+
+    // Récupère les contacts sous forme d'objets, ajoute dans un arrayList, gestion du coche solo, creation de
     // l'adapter
     private void initListViewData() {
 
-        // Création des objets Contact
-        Contact Jean = new Contact(
-                "Jean Baradat", "0033601030507",false);
-        Contact Lucie = new Contact (
-                "Lucie Dumas", "0033600000000", false);
-        Contact Salome = new Contact (
-                "Salomé Cliquennois", "0033601030507", false);
-        Contact Henri = new Contact (
-                "Henri Michaud", "0033601020304", false);
-        Contact Valentine = new Contact (
-                "Valentine Maillard", "0033601020304", false);
-        Contact Adelaide = new Contact (
-                "Adélaïde Machon", "0033601020304", false);
-        Contact Mathilde = new Contact (
-                "Mathilde Titi", "0033601020304", false);
-        Contact Emma = new Contact (
-                "Emma Simpson", "0033601020304", false);
-        Contact Dave = new Contact (
-                "Dave Strider", "0033601020304", false);
-        Contact Lou = new Contact (
-                "Lou Pépèle", "0033601020304", false);
-        Contact Yannis = new Contact (
-                "Yannis Kuro", "0033601020304", false);
-        Contact Achille = new Contact (
-                "Achille Talon", "0033601020304", false);
-        Contact Gregory = new Contact (
-                "Grégory Flotti", "0033601020304", false);
-        Contact Winnie = new Contact (
-                "Winnie L'Ourson", "0033611223344", false);
-        Contact Gerard = new Contact (
-                "Gérard Menvussa", "0033611223344", false);
-        Contact Jean_Marie = new Contact (
-                "Jean-Marie Saint-Joseph", "0033601020304", false);
-        Contact Zinedine = new Contact (
-                "Zinedine Zidane", "003311335577", false);
-        Contact Germaine = new Contact (
-                "Germaine Langlisse", "0033601020304", false);
-        Contact Titouan = new Contact (
-                "Titouan Gaming", "0033601020304", false);
-        Contact Denis = new Contact (
-                "Denis Brogniart", "0033600000000", false);
-        Contact Didier = new Contact (
-                "Didier Deschamps", "0033600000001", false);
-
-        // Ajout de ceux-ci dans un arrayList
+        // arraylist contenant les objets Contact
         this.listeDesContacts = new ArrayList<Contact>();
-        listeDesContacts.add(Jean);
-        listeDesContacts.add(Lucie);
-        listeDesContacts.add(Salome);
-        listeDesContacts.add(Henri);
-        listeDesContacts.add(Valentine);
-        listeDesContacts.add(Adelaide);
-        listeDesContacts.add(Mathilde);
-        listeDesContacts.add(Emma);
-        listeDesContacts.add(Dave);
-        listeDesContacts.add(Lou);
-        listeDesContacts.add(Yannis);
-        listeDesContacts.add(Achille);
-        listeDesContacts.add(Gregory);
-        listeDesContacts.add(Winnie);
-        listeDesContacts.add(Gerard);
-        listeDesContacts.add(Jean_Marie);
-        listeDesContacts.add(Zinedine);
-        listeDesContacts.add(Germaine);
-        listeDesContacts.add(Titouan);
-        listeDesContacts.add(Denis);
-        listeDesContacts.add(Didier);
+
+        // récupère chaque contact avec le content provider
+        ContentResolver cr = getContentResolver();
+        Uri uri = ContactsContract.Contacts.CONTENT_URI;
+        String[] projection = null;
+        String selection = null;
+        String[] selectionArgs = null;
+        String sortOrder = null;
+        Cursor cur = cr.query(uri, projection, selection, selectionArgs, sortOrder);
+
+        if (cur.getCount() > 0) {
+            while (cur.moveToNext()) {
+                String name = cur.getString(cur.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+                String id = cur.getString(cur.getColumnIndex(ContactsContract.Contacts._ID));
+                int num = cur.getInt(cur.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER));
+                if (num == 1) {
+                    Uri uri2 = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
+                    String selection2 = ContactsContract.CommonDataKinds.Phone.CONTACT_ID + "= ?";
+                    String[] selectionArgs2 = new String[]{id};
+                    Cursor cur2 = cr.query(uri2, projection, selection2, selectionArgs2, sortOrder);
+                    while (cur2.moveToNext()) {
+                        String phone = cur2.getString(cur2.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                        // construit un objet Contact avec les informations récupérées
+                        Contact contact = new Contact(name, phone, false);
+                        // ajoute le contact à l'arraylist
+                        listeDesContacts.add(contact);
+                    }
+                }
+            }
+        }
 
         // ArrayAdapter qui permet d'utiliser le layout par défaut spécifiquement prévu pour les
         // sélections multiples et de l'appliquer aux checkbox de notre listView
