@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         String sortOrder = null;
         Cursor cur = cr.query(uri, projection, selection, selectionArgs, sortOrder);
 
-        if (cur.getCount() > 0) {
+        if (cur.getCount() >= 0) {
             while (cur.moveToNext()) {
                 String name = cur.getString(cur.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
                 String id = cur.getString(cur.getColumnIndex(ContactsContract.Contacts._ID));
@@ -154,13 +154,15 @@ public class MainActivity extends AppCompatActivity implements Serializable {
                     String selection2 = ContactsContract.CommonDataKinds.Phone.CONTACT_ID + "= ?";
                     String[] selectionArgs2 = new String[]{id};
                     Cursor cur2 = cr.query(uri2, projection, selection2, selectionArgs2, sortOrder);
+                    Contact contact = null;
                     while (cur2.moveToNext()) {
                         String phone = cur2.getString(cur2.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
                         // construit un objet Contact avec les informations récupérées
-                        Contact contact = new Contact(name, phone, false);
+                        contact = new Contact(name, phone, false);
                         // ajoute le contact à l'arraylist
-                        listeDesContacts.add(contact);
+
                     }
+                    listeDesContacts.add(contact);
                 }
             }
         }
