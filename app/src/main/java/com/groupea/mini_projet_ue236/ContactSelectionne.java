@@ -4,6 +4,9 @@ package com.groupea.mini_projet_ue236;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Adapter;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +19,23 @@ import java.util.ArrayList;
 // tableau d'octets
 public class ContactSelectionne extends AppCompatActivity implements Serializable {
 
+    // mise en place de la listView et du contenu
+    private ListView listView;
+    String messageType [] = {
+            "Coucou <nom du contact> !\n" +
+                    "J'espère que tu vas bien :) Je te souhaite des belles fêtes de fin d'année, " +
+                    "pleines d'amour et de partage !\n" + "À bientôt, je l'espère !",
+            "Hey <nom du contact> !\n" +
+                    "Meilleurs vœux à toi ! Que cette nouvelle année déborde de réussite sur " +
+                    "tous les plans, mais moins que la prochaine ! Bisous, à bientôt ! ",
+            "Bonjour <nom du contact>, \n" +
+                    "Meilleurs vœux à tous, en espérant que vous réussirez toutes vos " +
+                    "entreprises, peu importe le thème, bisous !",
+            "Bonjour <nom du contact>,\n" +
+                    "Très belles fêtes de fin d'année à vous, profitez bien, à bientôt !",
+            "Bonjour <nom du contact>, \n" +
+                    "Meilleurs vœux pour cette année qui débute tout juste, à bientôt !"
+    };
     // saut de ligne pour le textView listant les contacts sélectionnés
     String newLine = System.getProperty("line.separator");
     // permettra ensuite d'invoquer le nom du contact sélectionné, au sein du textView
@@ -43,6 +63,14 @@ public class ContactSelectionne extends AppCompatActivity implements Serializabl
 
         // appel du textView grâce à son id
         TextView textView = findViewById(R.id.textview1);
+
+        // appel de la listView grâce à son id
+        this.listView = findViewById(R.id.liste_message_type);
+
+        // mise en place de l'adapter pour la listView
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,
+                R.layout.list_view_message_type, R.id.textView3,messageType);
+        this.listView.setAdapter(arrayAdapter);
 
         // pour toute la longueur de la liste des contacts sélectionnés (=lit le tableau de
         // haut en bas)
