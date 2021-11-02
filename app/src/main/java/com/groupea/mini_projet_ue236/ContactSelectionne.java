@@ -1,6 +1,7 @@
 package com.groupea.mini_projet_ue236;
 
 // diverses bibliothèques
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.Serializable;
@@ -21,7 +23,7 @@ public class ContactSelectionne extends AppCompatActivity implements Serializabl
 
     // mise en place de la listView et du contenu
     private ListView listView;
-    String messageType [] = {
+    String messageType[] = {
             "Coucou <nom du contact> !\n" +
                     "J'espère que tu vas bien :) Je te souhaite des belles fêtes de fin d'année, " +
                     "pleines d'amour et de partage !\n" + "À bientôt, je l'espère !",
@@ -69,13 +71,13 @@ public class ContactSelectionne extends AppCompatActivity implements Serializabl
 
         // mise en place de l'adapter pour la listView
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,
-                R.layout.list_view_message_type, R.id.textView3,messageType);
+                R.layout.list_view_message_type, R.id.textView3, messageType);
         this.listView.setAdapter(arrayAdapter);
 
         // pour toute la longueur de la liste des contacts sélectionnés (=lit le tableau de
         // haut en bas)
-        for (int i = 0; i < listSelectedContacts.size() ; i++) {
-            if (i == 0){
+        for (int i = 0; i < listSelectedContacts.size(); i++) {
+            if (i == 0) {
                 // permet d'appeler la phrase d'intro lorsque l'index du nouveau tableau est à 0
                 // (=économise un textView) et rajoute un retour à la ligne
                 textView.append(infoTitre + newLine);
@@ -88,8 +90,7 @@ public class ContactSelectionne extends AppCompatActivity implements Serializabl
     }
 
     // retourne à l'activité précédente
-    public void buttonNextActivityMainActivity(View v)
-    {
+    public void buttonNextActivityMainActivity(View v) {
         //TODO : trouver un moyen de conserver les contacts précédemment cochés afin d'éviter à
         // l'utilisateur de devoir tous les recocher pour une simple erreur ?
         Intent intent = new Intent(this, MainActivity.class);
@@ -97,14 +98,34 @@ public class ContactSelectionne extends AppCompatActivity implements Serializabl
     }
 
     // Validation du choix des contacts et envoi du message, retourne à l'activite 1 (MainActivity)
-    public void boutonValider(View view)
-    {
-        // petite bulle en bas de l'écran indiquant que le message a été envoyé aux contacts
-        // sélectionnés
-        Toast.makeText(this, "Le message a été envoyé !", Toast.LENGTH_SHORT).show();
-        // fait le lien entre cette activité et l'activité MainActivity
-        Intent intent = new Intent(this, MainActivity.class);
-        // lance l'intent décrit
-        startActivity(intent);
+    public void boutonValider(View v) {
+        // création d'une boite de dialogue pour confirmation
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        // paramétrage de la boite de dialogue, titre, message, annulation
+        builder.setTitle(R.string.dialog_title).setMessage(R.string.dialog_message);
+        builder.setCancelable(true);
+        // bouton oui
+        builder.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // petite bulle en bas de l'écran indiquant que le message a été envoyé aux contacts
+                // sélectionnés
+                Toast.makeText(ContactSelectionne.this, "Le message a été envoyé !", Toast.LENGTH_SHORT).show();
+                // fait le lien entre cette activité et l'activité MainActivity
+                Intent intent = new Intent(ContactSelectionne.this, MainActivity.class);
+                // lance l'intent décrit
+                startActivity(intent);
+            }
+        });
+        // bouton non
+        builder.setNegativeButton("Non", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // la boite de dialogue se referme
+                dialog.cancel();
+            }
+        });
+        // affichage de la boite de dialogue
+        builder.create().show();
     }
 }

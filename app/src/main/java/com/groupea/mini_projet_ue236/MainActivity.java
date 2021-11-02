@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
             contact.setActive(!currentCheck);
 
             //NE FONCTIONNE PAS : pour déselectionner la case checkbox all ; initialement testé avec
-            //isChecked, mais rien n'y fait, donc nique
+            //isChecked, mais rien n'y fait
             /*if(contact.setActive(!currentCheck)){
                 checkBoxCheckAll.setSelected(false);
             }*/

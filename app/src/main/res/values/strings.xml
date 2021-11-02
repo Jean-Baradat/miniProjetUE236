@@ -4,4 +4,6 @@
     <string name="bouton_annuler">Annuler</string>
     <string name="bouton_valider">Valider</string>
     <string name="title_message_type">Sélectionner le message type à envoyer aux contacts sélectionnés :</string>
+    <string name="dialog_message">Confirmez-vous l\'envoi ?</string>
+    <string name="dialog_title">Confirmation</string>
 </resources>
