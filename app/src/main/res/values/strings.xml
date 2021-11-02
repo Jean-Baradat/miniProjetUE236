@@ -3,4 +3,5 @@
     <string name="button_name">Suivant</string>
     <string name="bouton_annuler">Annuler</string>
     <string name="bouton_valider">Valider</string>
+    <string name="title_message_type">Sélectionner le message type à envoyer aux contacts sélectionnés :</string>
 </resources>

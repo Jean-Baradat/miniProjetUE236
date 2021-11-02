@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MiniProjetUE236">
         <activity
+            android:name=".ListViewMessageType"
+            android:exported="false" />
+        <activity
             android:name=".ContactSelectionne"
             android:exported="false" />
         <activity
