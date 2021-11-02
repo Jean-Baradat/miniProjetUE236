@@ -2,11 +2,13 @@ package com.groupea.mini_projet_ue236;
 
 // Import de diverses bibliothèques
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.util.SparseBooleanArray;
@@ -20,6 +22,7 @@ import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -36,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
     // à la création de l'application (= à son ouverture), récupère les données initiales contenues
     // dans savedInstanceState
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -128,8 +132,8 @@ public class MainActivity extends AppCompatActivity implements Serializable {
     }
 
 
-    // Récupère les contacts sous forme d'objets, ajoute dans un arrayList, gestion du coche solo, creation de
-    // l'adapter
+    // Récupère les contacts sous forme d'objets, ajoute dans un arrayList, gestion du coche solo,
+    // creation de l'adapter
     private void initListViewData() {
 
         // arraylist contenant les objets Contact
@@ -146,9 +150,12 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
         if (cur.getCount() >= 0) {
             while (cur.moveToNext()) {
-                String name = cur.getString(cur.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
-                String id = cur.getString(cur.getColumnIndex(ContactsContract.Contacts._ID));
-                int num = cur.getInt(cur.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER));
+                @SuppressLint("Range") String name = cur.getString(
+                        cur.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+                @SuppressLint("Range") String id = cur.getString(
+                        cur.getColumnIndex(ContactsContract.Contacts._ID));
+                @SuppressLint("Range") int num = cur.getInt(
+                        cur.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER));
                 if (num == 1) {
                     Uri uri2 = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
                     String selection2 = ContactsContract.CommonDataKinds.Phone.CONTACT_ID + "= ?";
@@ -156,7 +163,8 @@ public class MainActivity extends AppCompatActivity implements Serializable {
                     Cursor cur2 = cr.query(uri2, projection, selection2, selectionArgs2, sortOrder);
                     Contact contact = null;
                     while (cur2.moveToNext()) {
-                        String phone = cur2.getString(cur2.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                        @SuppressLint("Range") String phone = cur2.getString(
+                                cur2.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
                         // construit un objet Contact avec les informations récupérées
                         contact = new Contact(name, phone, false);
                         // ajoute le contact à l'arraylist
@@ -217,7 +225,8 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
         if (listeDesContactsSelectionnes.size() == 0)
         {
-            Toast.makeText(this, "Sélectionnez au moins un contact", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Sélectionnez au moins un contact",
+                    Toast.LENGTH_SHORT).show();
         }
         else
         {
