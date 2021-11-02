@@ -5,7 +5,6 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
@@ -20,11 +19,8 @@ import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -145,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         String[] projection = null;
         String selection = null;
         String[] selectionArgs = null;
-        String sortOrder = null;
+        String sortOrder = "DISPLAY_NAME ASC";
         Cursor cur = cr.query(uri, projection, selection, selectionArgs, sortOrder);
 
         if (cur.getCount() >= 0) {
@@ -167,9 +163,8 @@ public class MainActivity extends AppCompatActivity implements Serializable {
                                 cur2.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
                         // construit un objet Contact avec les informations récupérées
                         contact = new Contact(name, phone, false);
-                        // ajoute le contact à l'arraylist
-
                     }
+                    // ajoute le contact à l'arraylist
                     listeDesContacts.add(contact);
                 }
             }

@@ -4,7 +4,6 @@ package com.groupea.mini_projet_ue236;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -19,9 +18,7 @@ import java.util.ArrayList;
 // tableau d'octets
 public class ContactSelectionne extends AppCompatActivity implements Serializable {
 
-    // mise en place de la listView et du contenu
-    private ListView listView;
-    String messageType [] = {
+    String[] messageType = {
             "Coucou <nom du contact> !\n" +
                     "J'espère que tu vas bien :) Je te souhaite des belles fêtes de fin d'année, " +
                     "pleines d'amour et de partage !\n" + "À bientôt, je l'espère !",
@@ -65,12 +62,13 @@ public class ContactSelectionne extends AppCompatActivity implements Serializabl
         TextView textView = findViewById(R.id.textview1);
 
         // appel de la listView grâce à son id
-        this.listView = findViewById(R.id.liste_message_type);
+        // mise en place de la listView et du contenu
+        ListView listView = findViewById(R.id.liste_message_type);
 
         // mise en place de l'adapter pour la listView
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,
                 R.layout.list_view_message_type, R.id.textView3,messageType);
-        this.listView.setAdapter(arrayAdapter);
+        listView.setAdapter(arrayAdapter);
 
         // pour toute la longueur de la liste des contacts sélectionnés (=lit le tableau de
         // haut en bas)
