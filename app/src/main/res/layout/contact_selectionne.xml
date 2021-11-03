@@ -65,6 +65,10 @@
         android:layout_marginBottom="20dp"
         android:onClick="boutonValider"
         android:text="@string/bouton_valider"
+        android:background="@drawable/stylised_button"
+        android:fontFamily="@font/roboto_medium"
+        android:textColor="@color/white"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="NotSibling,UsingOnClickInXml" />
@@ -77,6 +81,10 @@
         android:layout_marginBottom="20dp"
         android:onClick="buttonNextActivityMainActivity"
         android:text="@string/bouton_annuler"
+        android:background="@drawable/stylised_button"
+        android:fontFamily="@font/roboto_medium"
+        android:textColor="@color/white"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="NotSibling,UsingOnClickInXml" />
