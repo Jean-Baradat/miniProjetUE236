@@ -12,7 +12,8 @@
         android:layout_height="match_parent"
         android:paddingVertical="10dp"
         android:paddingHorizontal="10dp"
-        android:text="Text"
+        android:text=""
+        android:background="@drawable/liste_message_type_background"
         android:textSize="18sp"/>
 
 </LinearLayout>
