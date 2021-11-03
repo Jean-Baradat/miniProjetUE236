@@ -3,21 +3,22 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/UE236 appli groupe A/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.403125" />
         <entry key="..\:/UE236 appli groupe A/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2484375" />
+        <entry key="..\:/UE236 appli groupe A/app/src/main/res/drawable/stylised_button.xml" value="0.33177083333333335" />
         <entry key="..\:/UE236 appli groupe A/app/src/main/res/layout/activity_contacts.xml" value="0.21510416666666668" />
-        <entry key="..\:/UE236 appli groupe A/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/UE236 appli groupe A/app/src/main/res/layout/activity_main.xml" value="0.18" />
         <entry key="..\:/UE236 appli groupe A/app/src/main/res/layout/checkbox.xml" value="0.21875" />
         <entry key="..\:/UE236 appli groupe A/app/src/main/res/layout/contact.xml" value="0.21875" />
         <entry key="..\:/UE236 appli groupe A/app/src/main/res/layout/contact_selectionne.xml" value="0.21875" />
         <entry key="..\:/UE236 appli groupe A/app/src/main/res/layout/test.xml" value="0.21875" />
-        <entry key="..\:/Users/Lucie/AndroidStudioProjects/miniProjetUE236/app/src/main/res/drawable/stylised_button.xml" value="0.2703125" />
-        <entry key="..\:/Users/Lucie/AndroidStudioProjects/miniProjetUE236/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Users/Lucie/AndroidStudioProjects/miniProjetUE236/app/src/main/res/layout/contact_selectionne.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Lucie/AndroidStudioProjects/miniProjetUE236/app/src/main/res/layout/list_view_message_type.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/dovak/AndroidStudioProjects/MiniProjetUE236/app/src/main/res/layout-v28/contact_selectionne.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/dovak/AndroidStudioProjects/MiniProjetUE236/app/src/main/res/layout/activity_contact.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/dovak/AndroidStudioProjects/MiniProjetUE236/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/dovak/AndroidStudioProjects/MiniProjetUE236/app/src/main/res/layout/contact.xml" value="0.26992753623188404" />
-        <entry key="..\:/Users/dovak/AndroidStudioProjects/MiniProjetUE236/app/src/main/res/layout/contact_selectionne.xml" value="0.33" />
+        <entry key="..\:/Users/dovak/AndroidStudioProjects/MiniProjetUE236/app/src/main/res/layout/contact_selectionne.xml" value="0.25" />
+        <entry key="..\:/Users/dovak/AndroidStudioProjects/MiniProjetUE236/app/src/main/res/layout/list_view_message_type.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/dovak/AppData/Local/Android/Sdk/platforms/android-31/data/res/layout/simple_list_item_multiple_choice.xml" value="0.36666666666666664" />
       </map>
     </option>
   </component>
